@@ -11,7 +11,7 @@ Parse.Cloud.define('dataFromParse', function(req, res) {
 
 
 Parse.Cloud.define('getStates', function(req, res) {
-  const query = new Parse.Query("Review");
+  const query = new Parse.Query("States");
   //query.equalTo("movie", request.params.movie);
   query.find()
     .then((results) => {
