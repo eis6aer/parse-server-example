@@ -5,5 +5,6 @@ Parse.Cloud.define('hello', function(req, res) {
 
 
 Parse.Cloud.define('dataFromParse', function(req, res) {
-  res.status(200).json(req);
+	console.log(req);
+  res.status(200).send('Consulta realizada!');
 });
