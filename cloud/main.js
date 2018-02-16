@@ -25,17 +25,22 @@ Parse.Cloud.define('getStates', function(req, res) {
 Parse.Cloud.define('setStates', function (req,res) {
   var State = Parse.Object.extend('States');
   var s = new State();
-  s.set("nombre","Aguascalientes");
-  s.save(null, {
-     success: function(state) {
-       // Execute any logic that should take place after the object is saved.
-       alert('New object created with objectId: ' + state.nombre);
-     },
-     error: function(state, error) {
-       // Execute any logic that should take place if the save fails.
-       // error is a Parse.Error with an error code and message.
-       alert('Failed to create new object, with error code: ' + error.message);
-     }
-   });
-  res.success("Saved!!");
+  if (res.params.state != null)
+  {
+    s.set("nombre",res.params.state);
+    s.save(null, {
+       success: function(state) {
+         // Execute any logic that should take place after the object is saved.
+         res.success('New object created with objectId: ' + state.nombre);
+       },
+       error: function(state, error) {
+         // Execute any logic that should take place if the save fails.
+         // error is a Parse.Error with an error code and message.
+         res.success('Failed with message: ' + error.message);
+       }
+     });
+  } else {
+    res.success('No data');
+  }
+
 });
