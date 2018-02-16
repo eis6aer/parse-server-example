@@ -15,10 +15,10 @@ Parse.Cloud.define('getStates', function(req, res) {
   //query.equalTo("movie", request.params.movie);
   query.find()
     .then((results) => {
-      res.success(sum / results);
+      res.success(results);
     })
     .catch(() =>  {
-      res.error("movie lookup failed");
+      res.error("states lookup failed");
     });
 });
 
