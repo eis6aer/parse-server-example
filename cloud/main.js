@@ -5,5 +5,5 @@ Parse.Cloud.define('hello', function(req, res) {
 
 
 Parse.Cloud.define('dataFromParse', function(req, res) {
-  res.success('Aqui haces el querycito sabroson');
+  res.status(200).json(req);
 });
