@@ -29,9 +29,10 @@ Parse.Cloud.define('setStates', function (req,res) {
   {
     s.set("nombre",req.params.state);
     s.save(null, {
-       success: function(state) {
+       success: function(insertedState) {
+         console.log(insertedState);
          // Execute any logic that should take place after the object is saved.
-         res.success('New object created with objectId: ' + state.nombre);
+         res.success('New object created with objectId: ' + insertedState.get('nombre'));
        },
        error: function(state, error) {
          // Execute any logic that should take place if the save fails.
