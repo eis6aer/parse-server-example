@@ -25,9 +25,9 @@ Parse.Cloud.define('getStates', function(req, res) {
 Parse.Cloud.define('setStates', function (req,res) {
   var State = Parse.Object.extend('States');
   var s = new State();
-  if (res.params.state != null)
+  if (req.params.state != null)
   {
-    s.set("nombre",res.params.state);
+    s.set("nombre",req.params.state);
     s.save(null, {
        success: function(state) {
          // Execute any logic that should take place after the object is saved.
