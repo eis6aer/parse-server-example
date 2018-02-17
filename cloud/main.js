@@ -12,7 +12,11 @@ Parse.Cloud.define('dataFromParse', function(req, res) {
 
 Parse.Cloud.define('getStates', function(req, res) {
   const query = new Parse.Query("States");
-  //query.equalTo("movie", request.params.movie);
+  var queryState = req.params.state;
+
+  if (queryState != null)
+    query.equalTo("nombre", queryState);
+
   query.find()
     .then((results) => {
       res.success(results);
@@ -32,12 +36,12 @@ Parse.Cloud.define('setStates', function (req,res) {
        success: function(insertedState) {
          console.log(insertedState);
          // Execute any logic that should take place after the object is saved.
-         res.success('New object created with objectId: ' + insertedState.get('nombre'));
+         res.success('Estado creado: ' + insertedState.get('nombre'));
        },
        error: function(state, error) {
          // Execute any logic that should take place if the save fails.
          // error is a Parse.Error with an error code and message.
-         res.success('Failed with message: ' + error.message);
+         res.success('Error (' + error.message + ')');
        }
      });
   } else {
